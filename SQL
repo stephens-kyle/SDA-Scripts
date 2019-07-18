@@ -1,3 +1,7 @@
-SELECT musym
-FROM mapunit
-WHERE muname LIKE '%Bong%'
+SELECT areasymbol, musym, muname, compname, comppct_r, majcompflag, legend.lkey, mapunit.mukey, cokey
+FROM legend
+JOIN mapunit ON legend.lkey=mapunit.lkey
+JOIN component ON mapunit.mukey = component.mukey
+AND comppct_r IS NULL
+AND areasymbol LIKE 'WA%'
+ORDER BY areasymbol, musym
